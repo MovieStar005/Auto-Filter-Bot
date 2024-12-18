@@ -1,0 +1,5 @@
+from pymongo import MongoClient
+
+DATABASE_URI = "your-database-uri"
+client = MongoClient(DATABASE_URI)
+print(client.list_database_names())
