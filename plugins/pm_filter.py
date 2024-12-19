@@ -560,9 +560,11 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
 
 async def auto_filter(client, msg, spoll=False):
-    st = await msg.reply_sticker("CAACAgUAAxkBAAKRB2dkW-xtbd5oV4eParBsRMV_I1R4AAJLEAACoxVYV2vpOgTk5TsENgQ")
-    await asyncio.sleep(1)
-    await st.delete()
+    st = ''
+    try:
+        st = await msg.reply_sticker("CAACAgUAAxkBAAKRAWdkPvaCHT5t0PaVGssxbSx660MaAAJdAAM7SrMpdt9JqhNVd-82BA")
+    except:
+        pass
     if not spoll:
         message = msg
         search = message.text
@@ -701,6 +703,7 @@ async def auto_filter(client, msg, spoll=False):
     if imdb and imdb.get('poster'):
         try:
             if settings['auto_delete']:
+                await delSticker(st)
                 k = await message.reply_photo(photo=imdb.get('poster'), caption=cap[:1024] + links + del_msg, parse_mode=enums.ParseMode.HTML, reply_markup=InlineKeyboardMarkup(btn))
                 await asyncio.sleep(DELETE_TIME)
                 await k.delete()
