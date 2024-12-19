@@ -45,9 +45,6 @@ async def group_search(client, message):
             if await is_check_admin(client, message.chat.id, message.from_user.id):
                 return
             await message.delete()
-            m = await message.reply_sticker("CAACAgUAAxkBAAKRAWdkPvaCHT5t0PaVGssxbSx660MaAAJdAAM7SrMpdt9JqhNVd-82BA")
-            await asyncio.sleep(1)
-            await m.delete()
             return await message.reply('<b>‼️ ᴡʜʏ ʏᴏᴜ ꜱᴇɴᴅ ʜᴇʀᴇ ʟɪɴᴋ\nʟɪɴᴋ ɴᴏᴛ ᴀʟʟᴏᴡᴇᴅ ʜᴇʀᴇ 🚫</b>')
 
         elif '@admin' in message.text.lower() or '@admins' in message.text.lower():
@@ -563,6 +560,11 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
 
 async def auto_filter(client, msg, spoll=False):
+    st = ''
+    try:
+        st = await msg.reply_sticker("CAACAgUAAxkBAAKRAWdkPvaCHT5t0PaVGssxbSx660MaAAJdAAM7SrMpdt9JqhNVd")
+    except:
+        pass
     if not spoll:
         message = msg
         search = message.text
@@ -576,13 +578,7 @@ async def auto_filter(client, msg, spoll=False):
     else:
         settings = await get_settings(msg.message.chat.id)
         message = msg.message.reply_to_message  # msg will be callback query
-        search, files, offset, total_results = spoll
-    try:
-        m = await msg.reply_sticker("CAACAgUAAxkBAAKRAWdkPvaCHT5t0PaVGssxbSx660MaAAJdAAM7SrMpdt9JqhNVd-82BA")
-        await asyncio.sleep(1)
-        await m.delete()
-    except Exception as e:
-       logger.warning(f"Error deleting message: {e}")     
+        search, files, offset, total_results = spoll     
     grp_id = message.chat.id
     req = message.from_user.id if message.from_user else 0
     key = f"{message.chat.id}-{message.id}"
