@@ -3,6 +3,7 @@ import asyncio
 import re
 import math
 import logging
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup, enums
 from pyrogram.errors.exceptions.bad_request_400 import MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty
 from Script import script
 from info import MAX_BTN, BIN_CHANNEL, USERNAME, URL, IS_VERIFY, LANGUAGES, AUTH_CHANNEL, SUPPORT_GROUP, QR_CODE, DELETE_TIME, PM_SEARCH
@@ -403,7 +404,18 @@ async def cb_handler(client: Client, query: CallbackQuery):
         _, lang = query.data.split("#")
         await query.answer(f"ʏᴏᴜ sᴇʟᴇᴄᴛᴇᴅ {lang.title()} ʟᴀɴɢᴜᴀɢᴇ ⚡️", show_alert=True)
   
-    elif query.data == "start":
+    async def handle_callback(update, context):
+    query = update.callback_query
+    await query.answer()
+    
+    if query.data == "start":
+        # Sticker send karna
+        await query.message.bot.send_sticker(
+            chat_id=query.message.chat_id,
+            sticker="STICKER_FILE_ID"  # Yahan aap apne sticker ka file ID daalein
+        )
+        
+        # Buttons ke liye keyboard
         buttons = [[
             InlineKeyboardButton('⇆ ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘs ⇆', url=f'http://t.me/{temp.U_NAME}?startgroup=start')
         ],[
@@ -413,7 +425,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
             InlineKeyboardButton('🚫 ᴇᴀʀɴ ᴍᴏɴᴇʏ ᴡɪᴛʜ ʙᴏᴛ 🚫', callback_data='earn')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
-        await query.message.edit_text(
+        
+        # Message send karna
+        await query.message.reply_text(
             text=script.START_TXT.format(query.from_user.mention, get_status(), query.from_user.id),
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
