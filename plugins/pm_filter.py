@@ -412,7 +412,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         # Sticker send karna
         await query.message.bot.send_sticker(
             chat_id=query.message.chat_id,
-            sticker="STICKER_FILE_ID"  # Yahan aap apne sticker ka file ID daalein
+            sticker="CAACAgUAAxkBAAEB7T9nZArlrn64i0BkBRD_GVonZgiiOQACXQADO0qzKXbfSaoTVXfvHgQ"  # Yahan aap apne sticker ka file ID daalein
         )
         
         # Buttons ke liye keyboard
