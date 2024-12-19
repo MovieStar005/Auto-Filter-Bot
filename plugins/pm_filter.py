@@ -387,7 +387,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             InlineKeyboardButton("ᴡᴀᴛᴄʜ ᴏɴʟɪɴᴇ", url=online),
             InlineKeyboardButton("ꜰᴀsᴛ ᴅᴏᴡɴʟᴏᴀᴅ", url=download)
         ],[
-            InlineKeyboardButton('🧿 Wᴀᴛᴄʜ ᴏɴ ᴛᴇʟᴇɢʀᴀᴍ 🖥', web_app=WebAppInfo(url=online))
+            InlineKeyboardButton('🧿 Wᴀᴛᴄʜ ᴏɴ ᴛᴇʟᴇɢʀᴀᴍ 🖥', eb_app=WebAppInfo(url=online))
         ]]
         await query.edit_message_reply_markup(
             reply_markup=InlineKeyboardMarkup(btn)
@@ -403,19 +403,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         _, lang = query.data.split("#")
         await query.answer(f"ʏᴏᴜ sᴇʟᴇᴄᴛᴇᴅ {lang.title()} ʟᴀɴɢᴜᴀɢᴇ ⚡️", show_alert=True)
   
-    async def handle_callback(update, context):
-    async def handle_callback(update, context):
-    query = update.callback_query
-    await query.answer()
-    
-    if query.data == "start":
-        # Sticker send karna
-        await query.message.bot.send_sticker(
-            chat_id=query.message.chat_id,
-            sticker="CAACAgUAAxkBAAEB7T9nZArlrn64i0BkBRD_GVonZgiiOQACXQADO0qzKXbfSaoTVXfvHgQ"  # Yahan aap apne sticker ka file ID daalein
-        )
-        
-        # Buttons ke liye keyboard
+    elif query.data == "start":
         buttons = [[
             InlineKeyboardButton('⇆ ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘs ⇆', url=f'http://t.me/{temp.U_NAME}?startgroup=start')
         ],[
@@ -425,23 +413,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
             InlineKeyboardButton('🚫 ᴇᴀʀɴ ᴍᴏɴᴇʏ ᴡɪᴛʜ ʙᴏᴛ 🚫', callback_data='earn')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
-        
-        # Message send karna
-        await query.message.reply_text(
+        await query.message.edit_text(
             text=script.START_TXT.format(query.from_user.mention, get_status(), query.from_user.id),
-            reply_markup=reply_markup,
-            parse_mode=enums.ParseMode.HTML
-        )      
-    elif query.data == "features":
-        buttons = [[
-            InlineKeyboardButton('📸 ɪᴍᴀɢᴇ', callback_data='rahul'),
-            InlineKeyboardButton('🆎️ ꜰᴏɴᴛ', callback_data='font')    
-        ], [ 
-            InlineKeyboardButton('⋞ ʙᴀᴄᴋ', callback_data='start')
-        ]] 
-        reply_markup = InlineKeyboardMarkup(buttons)
-        await query.message.edit_text(                     
-            text=script.HELP_TXT,
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
         )
