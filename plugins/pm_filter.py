@@ -560,7 +560,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
 
 async def auto_filter(client, msg, spoll=False):
-    st = await msg.reply_sticker("CAACAgUAAxkBAAKRAWdkPvaCHT5t0PaVGssxbSx660MaAAJdAAM7SrMpdt9JqhNVd")
+    st = await msg.reply_sticker("CAACAgUAAxkBAAKRB2dkW-xtbd5oV4eParBsRMV_I1R4AAJLEAACoxVYV2vpOgTk5TsENgQ")
     await asyncio.sleep(1)
     await st.delete()
     if not spoll:
