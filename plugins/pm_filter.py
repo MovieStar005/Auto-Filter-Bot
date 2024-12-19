@@ -557,6 +557,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             return        
         await query.answer(url=f"https://t.me/{temp.U_NAME}?start=allfiles_{query.message.chat.id}_{key}")
 
+
 async def auto_filter(client, msg, spoll=False):
     if not spoll:
         message = msg
@@ -572,6 +573,13 @@ async def auto_filter(client, msg, spoll=False):
         settings = await get_settings(msg.message.chat.id)
         message = msg.message.reply_to_message  # msg will be callback query
         search, files, offset, total_results = spoll
+        # Sticker part
+        m = await message.reply_sticker("CAACAgUAAxkBAAEB7T9nZArlrn64i0BkBRD_GVonZgiiOQACXQADO0qzKXbfSaoTVXfvHgQ")  
+        try:
+            await asyncio.sleep(1)
+            await m.delete()
+        except Exception as e:
+            logger.warning(f"Error deleting message: {e}")     
     grp_id = message.chat.id
     req = message.from_user.id if message.from_user else 0
     key = f"{message.chat.id}-{message.id}"
