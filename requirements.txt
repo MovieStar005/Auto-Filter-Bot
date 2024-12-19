@@ -1,7 +1,6 @@
 pyrofork==2.3.45
 tgcrypto
-pymongo>=4.5
-motor>=3.0.0
+motor
 marshmallow
 umongo
 git+https://github.com/Joelkb/cinemagoer
