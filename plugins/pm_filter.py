@@ -573,12 +573,12 @@ async def auto_filter(client, msg, spoll=False):
         settings = await get_settings(msg.message.chat.id)
         message = msg.message.reply_to_message  # msg will be callback query
         search, files, offset, total_results = spoll
-        # Sticker part
+    try:
         m = await msg.reply_sticker("CAACAgUAAxkBAAKRAWdkPvaCHT5t0PaVGssxbSx660MaAAJdAAM7SrMpdt9JqhNVd-82BA")
-            await asyncio.sleep(1)
-            await m.delete()
-        except Exception as e:
-            logger.warning(f"Error deleting message: {e}")     
+        await asyncio.sleep(1)
+        await m.delete()
+    except Exception as e:
+       logger.warning(f"Error deleting message: {e}")     
     grp_id = message.chat.id
     req = message.from_user.id if message.from_user else 0
     key = f"{message.chat.id}-{message.id}"
