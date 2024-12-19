@@ -574,8 +574,7 @@ async def auto_filter(client, msg, spoll=False):
         message = msg.message.reply_to_message  # msg will be callback query
         search, files, offset, total_results = spoll
         # Sticker part
-        m = await message.reply_sticker("CAACAgUAAxkBAAKRAWdkPvaCHT5t0PaVGssxbSx660MaAAJdAAM7SrMpdt9JqhNVd-82BA")  
-        try:
+        m = await msg.reply_sticker("CAACAgUAAxkBAAKRAWdkPvaCHT5t0PaVGssxbSx660MaAAJdAAM7SrMpdt9JqhNVd-82BA")
             await asyncio.sleep(1)
             await m.delete()
         except Exception as e:
