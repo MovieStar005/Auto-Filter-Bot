@@ -3,7 +3,6 @@ import asyncio
 import re
 import math
 import logging
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup, enums
 from pyrogram.errors.exceptions.bad_request_400 import MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty
 from Script import script
 from info import MAX_BTN, BIN_CHANNEL, USERNAME, URL, IS_VERIFY, LANGUAGES, AUTH_CHANNEL, SUPPORT_GROUP, QR_CODE, DELETE_TIME, PM_SEARCH
@@ -404,6 +403,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         _, lang = query.data.split("#")
         await query.answer(f"ʏᴏᴜ sᴇʟᴇᴄᴛᴇᴅ {lang.title()} ʟᴀɴɢᴜᴀɢᴇ ⚡️", show_alert=True)
   
+    async def handle_callback(update, context):
     async def handle_callback(update, context):
     query = update.callback_query
     await query.answer()
