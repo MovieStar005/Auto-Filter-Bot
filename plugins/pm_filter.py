@@ -3,6 +3,7 @@ import asyncio
 import re
 import math
 import logging
+import random
 from pyrogram.errors.exceptions.bad_request_400 import MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty
 from Script import script
 from info import MAX_BTN, BIN_CHANNEL, USERNAME, URL, IS_VERIFY, LANGUAGES, AUTH_CHANNEL, SUPPORT_GROUP, QR_CODE, DELETE_TIME, PM_SEARCH
@@ -44,7 +45,7 @@ async def group_search(client, message):
             if await is_check_admin(client, message.chat.id, message.from_user.id):
                 return
             await message.delete()
-            m = await message.reply_sticker(sticker=random.choice("CAACAgUAAxkBAAKRAWdkPvaCHT5t0PaVGssxbSx660MaAAJdAAM7SrMpdt9JqhNVd-82BA")
+            m = await message.reply_sticker("CAACAgUAAxkBAAKRAWdkPvaCHT5t0PaVGssxbSx660MaAAJdAAM7SrMpdt9JqhNVd-82BA")
             try:
                 await asyncio.sleep(1)
                 await m.delete()
