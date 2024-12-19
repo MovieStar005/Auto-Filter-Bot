@@ -567,10 +567,10 @@ async def auto_filter(client, msg, spoll=False):
         search = message.text
         chat_id = message.chat.id
         settings = await get_settings(chat_id)
+        await st.delete()
         files, offset, total_results = await get_search_results(search)
         if not files:
             if settings["spell_check"]:
-                await st.delete()
                 return await advantage_spell_chok(msg)
             return
     else:
