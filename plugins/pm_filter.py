@@ -560,8 +560,11 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
 
 async def auto_filter(client, msg, spoll=False):
+    st = ''
     try:
         st = await msg.reply_sticker("CAACAgUAAxkBAAKRAWdkPvaCHT5t0PaVGssxbSx660MaAAJdAAM7SrMpdt9JqhNVd-82BA")
+    except:
+        pass
     if not spoll:
         message = msg
         search = message.text
