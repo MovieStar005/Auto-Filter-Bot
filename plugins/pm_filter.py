@@ -46,9 +46,8 @@ async def group_search(client, message):
                 return
             await message.delete()
             m = await message.reply_sticker("CAACAgUAAxkBAAKRAWdkPvaCHT5t0PaVGssxbSx660MaAAJdAAM7SrMpdt9JqhNVd-82BA")
-            try:
-                await asyncio.sleep(1)
-                await m.delete()
+            await asyncio.sleep(1)
+            await m.delete()
             except Exception as e:
                 logger.warning(f"Error deleting message: {e}")
             return await message.reply('<b>‼️ ᴡʜʏ ʏᴏᴜ ꜱᴇɴᴅ ʜᴇʀᴇ ʟɪɴᴋ\nʟɪɴᴋ ɴᴏᴛ ᴀʟʟᴏᴡᴇᴅ ʜᴇʀᴇ 🚫</b>')
